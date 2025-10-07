@@ -1,0 +1,357 @@
+/* Skip Links and Accessibility */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #000;
+    color: #fff;
+    padding: 8px;
+    z-index: 1000;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Focus Indicators */
+.control-button:focus,
+.legend-item:focus,
+.data-table button:focus,
+.sort-btn:focus,
+#star-type-filter:focus,
+canvas:focus {
+    outline: 3px solid #4ecdc4;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    body {
+        background: #000 !important;
+        color: #fff !important;
+    }
+
+    .container {
+        background: #111 !important;
+        border: 2px solid #fff !important;
+    }
+
+    .control-button {
+        background: #fff !important;
+        color: #000 !important;
+        border: 2px solid #fff !important;
+    }
+
+    .control-button.active {
+        background: #ff0 !important;
+        color: #000 !important;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+    .control-button,
+    .legend-item {
+        transition: none;
+    }
+
+    .control-button:hover {
+        transform: none;
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    color: white;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    opacity: 0.8;
+}
+
+.diagram-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 600px;
+    margin: 40px auto;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.diagram-canvas {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.axis-label {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.x-axis-label {
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #4ecdc4;
+}
+
+.y-axis-label {
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    color: #ff6b6b;
+}
+
+.controls {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.control-button {
+    background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1em;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.4);
+}
+
+.control-button.active {
+    background: linear-gradient(45deg, #ff6b6b, #ff9ff3);
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.legend-item:hover,
+.legend-item:focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.info-panel {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.info-panel h2,
+.info-panel h3 {
+    color: #4ecdc4;
+    margin-bottom: 15px;
+}
+
+.star-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    border-left: 4px solid #ff6b6b;
+}
+
+/* Data Table Styles */
+.data-table-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.table-controls {
+    margin-bottom: 20px;
+}
+
+.table-controls label {
+    color: #4ecdc4;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.table-controls select {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 1em;
+}
+
+.star-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.star-data-table th,
+.star-data-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.star-data-table th {
+    background: rgba(78, 205, 196, 0.2);
+    font-weight: bold;
+    color: #4ecdc4;
+}
+
+.sort-btn {
+    background: none;
+    border: none;
+    color: #4ecdc4;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+}
+
+.sort-btn:hover,
+.sort-btn:focus {
+    color: #ffffff;
+}
+
+.star-data-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.star-type-main {
+    color: #ff4444;
+}
+
+.star-type-giant {
+    color: #ff8844;
+}
+
+.star-type-supergiant {
+    color: #4488ff;
+}
+
+.star-type-dwarf {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .diagram-container {
+        height: 400px;
+    }
+
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .legend {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .data-table-section {
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .star-data-table {
+        font-size: 0.9em;
+    }
+
+    .star-data-table th,
+    .star-data-table td {
+        padding: 8px;
+    }
+}
